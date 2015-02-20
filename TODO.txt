@@ -1,0 +1,2 @@
+- browse.js brings in JQuery and so on inside it, but it should be coming from other places
+- when the path fails to resolve, the client wants to know which component of the path is broken.

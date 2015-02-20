@@ -1,0 +1,62 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <st:documentation>
+    A &lt;input> control that supports browsing a remote directory path
+
+    <st:attribute name="clazz">
+      Additional CSS classes that the control gets.
+    </st:attribute>
+    <st:attribute name="field">
+      Used for databinding.
+    </st:attribute>
+    <st:attribute name="default">
+      The default value of the text box, in case both @value is and 'instance[field]' is null.
+    </st:attribute>
+    <st:attribute name="itemTypes">
+      The type (class name) of item to browse. Multiple types can be separated by spaces
+    </st:attribute>
+  </st:documentation>
+
+  <f:prepareDatabinding/>
+  <j:set var="value" value="${attrs.value ?: instance[attrs.field] ?: attrs.default}" />
+  <j:set var="restAPI" value="${app.getDescriptorByName('com.cloudbees.opscenter.context.remote.RemoteDirectoryRestAPI')}"/>
+  <div class="bootstrap3 browserBox"
+       data-item-type="${itemTypes ?: 'hudson.model.Item'}"
+       data-root-path="${restAPI.root}"
+       data-l10n-warning="${%js_warning}"
+       data-l10n-pathoffline="${%js_pathoffline}"
+       data-l10n-pathoffline0="${%js_pathoffline0}"
+       data-l10n-pathinvalid="${%js_pathinvalid}"
+       data-l10n-details="${%js_details}"
+       data-l10n-resetpath="${%js_resetpath}"
+       data-l10n-tryingretry="${%js_tryingretry}"
+       data-l10n-retry="${%js_retry}"
+       data-l10n-chooseitemorelse="${%js_chooseitemorelse}"
+       data-l10n-chooseitem="${%js_chooseitem}"
+       data-l10n-noitem="${%js_noitem}"
+       data-l10n-itemselected="${%js_itemselected}"
+       data-l10n-invalidpath="${%js_invalidpath}"
+       data-l10n-recheckingpath="${%js_recheckingpath}"
+       data-l10n-resettingpath="${%js_resettingpath}"
+       data-l10n-errordetails="${%js_errordetails}"
+          >
+    <input type="hidden" class="remote-directory-browser" name="_.remotePathUrl" value="${restAPI.defaultIfBlank(value)}"/>
+    <div class="browsePathControlBox"> </div>
+  </div>
+  <script>
+    // conditionally include the adjunct resources as AdjunctManager doesn't do this correctly at all
+    if (!document.getElementById('lib.remotedirectory.browse.browse-css')) {
+      var link = document.createElement('link');
+      link.id = 'lib.remotedirectory.browse.browse-css';
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = "${request.contextPath+'/'+app.getAdjuncts(null).rootURL+'/lib/remotedirectory/browse/browse.css'}";
+      link.media = 'all';
+      document.getElementsByTagName('head')[0].appendChild(link);
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = "${request.contextPath+'/'+app.getAdjuncts(null).rootURL+'/lib/remotedirectory/browse/browse.js'}";
+      document.getElementsByTagName('body')[0].appendChild(script);
+    }
+  </script>
+</j:jelly>
