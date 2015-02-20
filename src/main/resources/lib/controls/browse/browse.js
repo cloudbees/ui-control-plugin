@@ -72,11 +72,11 @@ var jq2_1_3 = $.noConflict(true);
     function walkPath(callback,pathToTry,from){
       from = (from || $browserHidenInput.val());
       var getPath = $.ajax(
-        endpointUrl+'/walk',
+        endpointUrl+'/resolve',
         {
           type:'get',
-          data:'path=' + encodeURIComponent(pathToTry) + '&type=' + encodeURIComponent(browseItemType) +
-          '&from=' + encodeURIComponent(from)
+          data:'relPath=' + encodeURIComponent(pathToTry) + '&type=' + encodeURIComponent(browseItemType) +
+          '&base=' + encodeURIComponent(from)
         })
         .always(callback);
 
