@@ -45,6 +45,7 @@ var jq2_1_3 = $.noConflict(true);
     var $browsePathControlBox = $browserBox.find('.browsePathControlBox').empty();
     var $target = $browsePathControlBox;
 
+    var endpointUrl = $browserBox.attr('url');
     var browseItemType = ($browserBox.attr('data-item-type') || 'hudson.model.Item');
     var browserRoot = $browserBox.attr('data-root-path');
     var recentData;
@@ -71,7 +72,7 @@ var jq2_1_3 = $.noConflict(true);
     function walkPath(callback,pathToTry,from){
       from = (from || $browserHidenInput.val());
       var getPath = $.ajax(
-        rootURL+'/descriptor/com.cloudbees.opscenter.context.remote.RemoteDirectoryRestAPI/walk',
+        endpointUrl+'/walk',
         {
           type:'get',
           data:'path=' + encodeURIComponent(pathToTry) + '&type=' + encodeURIComponent(browseItemType) +
@@ -88,7 +89,7 @@ var jq2_1_3 = $.noConflict(true);
       pathToShow = setPath(pathToShow);
 
       var getFolders = $.ajax(
-        rootURL+'/descriptor/com.cloudbees.opscenter.context.remote.RemoteDirectoryRestAPI/describe',
+        endpointUrl+'/describe',
         {
           type:'get',
           data:'path=' + encodeURIComponent(pathToShow) + '&type=' + encodeURIComponent(browseItemType)
