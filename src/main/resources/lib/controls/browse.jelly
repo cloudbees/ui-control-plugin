@@ -21,6 +21,7 @@
   <j:set var="value" value="${attrs.value ?: instance[attrs.field] ?: attrs.default}" />
   <div class="bootstrap3 browserBox"
        url="${attrs.url}"
+       data-root-path="/"
        data-item-type="${itemTypes ?: 'hudson.model.Item'}"
        data-l10n-warning="${%js_warning}"
        data-l10n-pathoffline="${%js_pathoffline}"
@@ -40,7 +41,6 @@
        data-l10n-errordetails="${%js_errordetails}"
           >
     <!-- Not sure how to incorporate this back
-    data-root-path="${restAPI.root}"
     -->
 
     <input type="hidden" class="remote-directory-browser" name="_.value" value="${value}"/>
