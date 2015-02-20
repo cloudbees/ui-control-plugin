@@ -16,7 +16,7 @@ import java.util.List;
  * @author Kohsuke Kawaguchi
  */
 @ExportedBean
-class TreeDescription implements HttpResponse {
+public class TreeDescription implements HttpResponse {
 
     private final TreeNode self;
 
