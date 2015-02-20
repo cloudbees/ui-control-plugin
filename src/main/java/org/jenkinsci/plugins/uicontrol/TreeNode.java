@@ -4,6 +4,8 @@ import hudson.util.HttpResponses;
 import org.kohsuke.stapler.HttpResponse;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
+import org.kohsuke.stapler.export.Exported;
+import org.kohsuke.stapler.export.ExportedBean;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -11,17 +13,20 @@ import java.io.IOException;
 /**
  * @author Kohsuke Kawaguchi
  */
+@ExportedBean
 public abstract class TreeNode implements HttpResponse {
 
     /**
      * Opaque ID that client-side JavaScript doesn't try to interpret.
      */
+    @Exported
     public abstract String getPath();
 
     /**
      * Human readable name of this particular node.
      * This name shouldn't include the names of the ancestors.
      */
+    @Exported
     public abstract String getDisplayName();
 
     /**
@@ -29,11 +34,13 @@ public abstract class TreeNode implements HttpResponse {
      *
      * Used as UI cue.
      */
+    @Exported
     public abstract boolean hasChildren();
 
     /**
      * Can this node be selected as the value of the control?
      */
+    @Exported
     public abstract boolean isSelectable();
 
     /**
@@ -45,6 +52,7 @@ public abstract class TreeNode implements HttpResponse {
      *
      * This is also used to sort children by similar kinds (such as jobs vs folders)
      */
+    @Exported
     public abstract String getType();
 
     public abstract Iterable<TreeNode> children();

@@ -12,17 +12,16 @@
     <st:attribute name="default">
       The default value of the text box, in case both @value is and 'instance[field]' is null.
     </st:attribute>
-    <st:attribute name="itemTypes">
-      The type (class name) of item to browse. Multiple types can be separated by spaces
+    <st:attribute name="url" use="required">
+      URL of the TreeWalker that produces the data model for this control.
     </st:attribute>
   </st:documentation>
 
   <f:prepareDatabinding/>
   <j:set var="value" value="${attrs.value ?: instance[attrs.field] ?: attrs.default}" />
-  <j:set var="restAPI" value="${app.getDescriptorByName('com.cloudbees.opscenter.context.remote.RemoteDirectoryRestAPI')}"/>
   <div class="bootstrap3 browserBox"
+       url="${attrs.url}"
        data-item-type="${itemTypes ?: 'hudson.model.Item'}"
-       data-root-path="${restAPI.root}"
        data-l10n-warning="${%js_warning}"
        data-l10n-pathoffline="${%js_pathoffline}"
        data-l10n-pathoffline0="${%js_pathoffline0}"
@@ -40,7 +39,11 @@
        data-l10n-resettingpath="${%js_resettingpath}"
        data-l10n-errordetails="${%js_errordetails}"
           >
-    <input type="hidden" class="remote-directory-browser" name="_.remotePathUrl" value="${restAPI.defaultIfBlank(value)}"/>
+    <!-- Not sure how to incorporate this back
+    data-root-path="${restAPI.root}"
+    -->
+
+    <input type="hidden" class="remote-directory-browser" name="_.value" value="${value}"/>
     <div class="browsePathControlBox"> </div>
   </div>
   <script>
@@ -50,12 +53,12 @@
       link.id = 'lib.remotedirectory.browse.browse-css';
       link.rel = 'stylesheet';
       link.type = 'text/css';
-      link.href = "${request.contextPath+'/'+app.getAdjuncts(null).rootURL+'/lib/remotedirectory/browse/browse.css'}";
+      link.href = "${request.contextPath+'/'+app.getAdjuncts(null).rootURL+'/lib/controls/browse/browse.css'}";
       link.media = 'all';
       document.getElementsByTagName('head')[0].appendChild(link);
       var script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = "${request.contextPath+'/'+app.getAdjuncts(null).rootURL+'/lib/remotedirectory/browse/browse.js'}";
+      script.src = "${request.contextPath+'/'+app.getAdjuncts(null).rootURL+'/lib/controls/browse/browse.js'}";
       document.getElementsByTagName('body')[0].appendChild(script);
     }
   </script>
