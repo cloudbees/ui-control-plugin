@@ -43,8 +43,10 @@ public class FileTreeNode extends TreeNode {
     public Iterable<TreeNode> children() {
         File[] children = file.listFiles();
         List<TreeNode> r = new ArrayList<TreeNode>();
-        for (File c : children) {
-            r.add(new FileTreeNode(c));
+        if (children!=null) {
+            for (File c : children) {
+                r.add(new FileTreeNode(c));
+            }
         }
         return r;
     }
@@ -56,6 +58,10 @@ public class FileTreeNode extends TreeNode {
 
     @Override
     public TreeNode getParent() {
-        return new FileTreeNode(file.getParentFile());
+        return create(file.getParentFile());
+    }
+
+    private TreeNode create(File f) {
+        return f==null ? null : new FileTreeNode(f);
     }
 }
