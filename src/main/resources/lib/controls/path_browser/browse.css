@@ -22,14 +22,6 @@
   .ui-autocomplete.pathFinder {width:auto !important; min-width:175px !important;}
   .ui-autocomplete > li {list-style:none; display:block; margin:0; padding:0; float:left; clear:both; width:100%}
   .ui-autocomplete > li > a {display:block; padding:5px 5px 5px 26px; background:url(img/folder_16.png) no-repeat 5px center; text-decoration:none; color:#000}
-  .ui-autocomplete > li.item > a {background:url(img/item_16.png) no-repeat 5px center}
-  .ui-autocomplete > li.combo > a {background:url(img/combo_16.png) no-repeat 5px center}
-  .ui-autocomplete > li.master > a {background:url(img/master_16.png) no-repeat 5px center}
-  .ui-autocomplete > li.slave > a {background:url(img/slave_16.png) no-repeat 5px center}
-  .ui-autocomplete > li.cloud > a {background:url(img/cloud_16.png) no-repeat 5px center}
-  .ui-autocomplete > li.proxymaster > a {background:url(img/proxy_16.png) no-repeat 5px center}
-  .ui-autocomplete > li.updatecenter > a {background:url(img/update_16.png) no-repeat 5px center}
-  .ui-autocomplete > li.unknown > a {background:url(img/unknown_16.png) no-repeat 5px center}
   .ui-autocomplete > li.ui-state-focus > a,
   .ui-autocomplete > li > a:hover{background-color: #B3D4FF;}
   .browsePathControlBox {border: 0; min-height:30px; border-radius: 2px; box-shadow: inset 0 0 0 1px #aaa; background:#fff; position:relative;}

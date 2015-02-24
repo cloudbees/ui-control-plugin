@@ -3,11 +3,22 @@
   <l:layout title="Test">
     <l:main-panel>
       <h1>Test</h1>
+
+      <!--
+        To assign icons to the objects in the tree, specify the additional CSS style.
+      -->
+      <style>
+        .ui-autocomplete > li.dir > a {background:url(folder_16.png) no-repeat 5px center}
+        .ui-autocomplete > li.file > a {background:url(item_16.png) no-repeat 5px center}
+      </style>
+
       <!-- set up the facade -->
       <j:set var="instance" value="${it}" />
       <j:set var="descriptor" value="${it}" />
-
+      
       <f:form action="nowhere" method="post" name="test">
+        
+        <!-- sample usage of the path_browser component that handles the 'controlValue' property -->
         <f:entry field="controlValue">
           <path_browser xmlns="/lib/controls" url="./treeData"/>
         </f:entry>

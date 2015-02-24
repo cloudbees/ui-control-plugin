@@ -5,7 +5,10 @@ import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
 import org.jenkinsci.plugins.uicontrol.path_browser.TreeNode;
 import org.jenkinsci.plugins.uicontrol.path_browser.TreeWalker;
+import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerResponse;
 
+import javax.servlet.ServletException;
 import java.io.File;
 import java.io.IOException;
 
@@ -41,6 +44,10 @@ public class PathBrowserDemo extends AbstractDescribableImpl<PathBrowserDemo> {
         };
     }
 
+    // serve images, etc
+    public void doDynamic(StaplerRequest req, StaplerResponse rsp) throws ServletException, IOException {
+        rsp.serveFile(req,getClass().getResource("PathBrowserDemo"+req.getRestOfPath()));
+    }
 
     @Extension
     public static class DescriptorImpl extends Descriptor<PathBrowserDemo> {

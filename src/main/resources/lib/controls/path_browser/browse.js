@@ -194,65 +194,18 @@ callback
 
     // Transforms the REST API into a data structure for presentation...
     function createListFromData(data,req){
-      var masterList = [];
-      var comboList = [];
-      var folderList = [];
-      var itemList = [];
-      var slaveList = [];
-      var proxyList = [];
-      var cloudList = [];
-      var updateList = [];
-      var unknown = [];
+      var list = [];
 
-      if(data.children)
+      if(data.children) {
         $.each(data.children,function(i,item){
           item.label = item.name;
           item.value = item.name;
           if( req === undefined ||item.name.toLowerCase().indexOf(req.term.toLowerCase())> -1 || req.term.length < 0){
-            if (item.type === 'com.cloudbees.opscenter.server.model.ClientMaster'){
-              item.typeClass = 'master';
-              masterList.push(item);
-            }
-            else if (item.type === 'com.cloudbees.hudson.plugins.folder.Folder'){
-              item.typeClass = 'folder';
-              folderList.push(item);
-            }
-            else if(item.item && item.container){
-              item.typeClass = 'combo';
-              itemList.push(item);
-            }
-            else if (item.container){
-              item.typeClass = 'folder';
-              folderList.push(item);
-            }
-            else if (item.item){
-              item.typeClass = 'item';
-              itemList.push(item);
-            }
-            else if (item.type === 'com.cloudbees.opscenter.server.model.SharedSlave'){
-              item.typeClass = 'slave';
-              slaveList.push(item);
-            }
-            else if (item.type === 'com.cloudbees.opscenter.server.proxy.ProxyMaster'){
-              item.typeClass = 'proxymaster';
-              proxyList.push(item);
-            }
-            else if (item.type === 'com.cloudbees.opscenter.server.model.SharedCloud'){
-              item.typeClass = 'cloud';
-              cloudList.push(item);
-            }
-            else if (item.type === 'com.cloudbees.plugins.updatecenter.UpdateCenter'){
-              item.typeClass = 'updatecenter';
-              updateList.push(item);
-            }
-            else{
-              item.typeClass = 'unknown';
-              unknown.push(item);
-            }
+            item.typeClass = item.type;
+            list.push(item);
           }
         });
-
-      var list = masterList.concat(folderList,comboList,itemList,slaveList,proxyList,cloudList,updateList,unknown);
+      }
 
       return list;
     }
