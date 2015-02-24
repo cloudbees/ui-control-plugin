@@ -1,3 +1,5 @@
+package org.jenkinsci.plugins.uicontrol.demo;
+
 import org.jenkinsci.plugins.uicontrol.TreeNode;
 
 import java.io.File;
