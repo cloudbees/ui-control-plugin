@@ -2,7 +2,6 @@ package org.jenkinsci.plugins.uicontrol;
 
 import hudson.util.HttpResponses;
 import org.apache.commons.lang.StringUtils;
-import org.kohsuke.stapler.HttpResponse;
 import org.kohsuke.stapler.QueryParameter;
 
 /**
@@ -29,9 +28,9 @@ public abstract class TreeWalker {
     }
 
     /**
-     *
+     * Given a path (which is opaque to the client-side JavaScript), return a description of that node.
      */
-    public HttpResponse doDescribe(@QueryParameter(required = true) String path,
+    public TreeDescription doDescribe(@QueryParameter(required = true) String path,
                                    @QueryParameter(required = false) String type) {
         final TreeNode base = get(path);
 

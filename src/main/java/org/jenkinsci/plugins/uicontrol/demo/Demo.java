@@ -12,6 +12,10 @@ import org.jenkinsci.plugins.uicontrol.TreeWalker;
 import java.io.File;
 
 /**
+ * Demo code to experiment with the path browser control.
+ *
+ * Activated only during "hpi:run" and is available at <tt>http://localhost:8080/jenkins/ui-control/</tt>
+ *
  * @author Kohsuke Kawaguchi
  */
 public class Demo extends AbstractDescribableImpl<Demo> implements RootAction {
@@ -28,6 +32,13 @@ public class Demo extends AbstractDescribableImpl<Demo> implements RootAction {
     @Override
     public String getUrlName() {
         return "ui-control";
+    }
+
+    /**
+     * Initial value of the control.
+     */
+    public String getControlValue() {
+        return new File(".").getAbsolutePath();
     }
 
     /**

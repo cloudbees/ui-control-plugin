@@ -54,7 +54,7 @@ public class TreeDescription implements HttpResponse {
         return getSelf().getPath();
     }
 
-    @Exported
+    @Exported(name="name")
     public String getDisplayName() {
         return getSelf().getDisplayName();
     }

@@ -26,7 +26,7 @@ public abstract class TreeNode implements HttpResponse {
      * Human readable name of this particular node.
      * This name shouldn't include the names of the ancestors.
      */
-    @Exported
+    @Exported(name="name")
     public abstract String getDisplayName();
 
     /**
