@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.uicontrol;
+package org.jenkinsci.plugins.uicontrol.path_browser;
 
 import hudson.util.HttpResponses;
 import org.apache.commons.lang.StringUtils;

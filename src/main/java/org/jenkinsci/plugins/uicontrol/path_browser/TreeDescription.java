@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.uicontrol;
+package org.jenkinsci.plugins.uicontrol.path_browser;
 
 import org.kohsuke.stapler.HttpResponse;
 import org.kohsuke.stapler.StaplerRequest;

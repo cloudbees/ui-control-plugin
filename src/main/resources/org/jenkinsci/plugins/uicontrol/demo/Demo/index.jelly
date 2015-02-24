@@ -2,16 +2,11 @@
 <j:jelly xmlns:j="jelly:core" xmlns:l="/lib/layout" xmlns:f="/lib/form">
   <l:layout title="Test">
     <l:main-panel>
-      <h1>Test</h1>
-      <!-- set up the facade -->
-      <j:set var="instance" value="${it}" />
-      <j:set var="descriptor" value="${it}" />
+      <h1>UI Control Library Demo</h1>
 
-      <f:form action="nowhere" method="post" name="test">
-        <f:entry field="controlValue">
-          <browse xmlns="/lib/controls" url="./treeData"/>
-        </f:entry>
-      </f:form>
+      <ul>
+        <li><a href="pathBrowser/">Path Browser Demo</a></li>
+      </ul>
     </l:main-panel>
   </l:layout>
 </j:jelly>

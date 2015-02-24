@@ -1,15 +1,8 @@
 package org.jenkinsci.plugins.uicontrol.demo;
 
-import hudson.Extension;
 import hudson.init.Initializer;
-import hudson.model.AbstractDescribableImpl;
-import hudson.model.Descriptor;
 import hudson.model.RootAction;
 import jenkins.model.Jenkins;
-import org.jenkinsci.plugins.uicontrol.TreeNode;
-import org.jenkinsci.plugins.uicontrol.TreeWalker;
-
-import java.io.File;
 
 /**
  * Demo code to experiment with the path browser control.
@@ -18,7 +11,7 @@ import java.io.File;
  *
  * @author Kohsuke Kawaguchi
  */
-public class Demo extends AbstractDescribableImpl<Demo> implements RootAction {
+public class Demo  implements RootAction {
     @Override
     public String getIconFileName() {
         return null;
@@ -34,40 +27,10 @@ public class Demo extends AbstractDescribableImpl<Demo> implements RootAction {
         return "ui-control";
     }
 
-    /**
-     * Initial value of the control.
-     */
-    public String getControlValue() {
-        return new File(".").getAbsolutePath();
-    }
+    // navigation to various demos. TODO: use @Extension and discovery
 
-    /**
-     * Bind the endpoint for the control.
-     */
-    public TreeWalker getTreeData() {
-        return new TreeWalker() {
-            @Override
-            public TreeNode root() {
-                File windows = new File("c:\\");
-                if (windows.exists())
-                    return new FileTreeNode(windows);
-                else
-                    return new FileTreeNode(new File("/"));
-            }
-
-            @Override
-            public TreeNode get(String path) {
-                return new FileTreeNode(new File(path));
-            }
-        };
-    }
-
-    @Extension
-    public static class DescriptorImpl extends Descriptor<Demo> {
-        @Override
-        public String getDisplayName() {
-            return "null";
-        }
+    public PathBrowserDemo getPathBrowser() {
+        return new PathBrowserDemo();
     }
 
     /**

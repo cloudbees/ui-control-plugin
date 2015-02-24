@@ -53,12 +53,12 @@
       link.id = 'lib.remotedirectory.browse.browse-css';
       link.rel = 'stylesheet';
       link.type = 'text/css';
-      link.href = "${request.contextPath+'/'+app.getAdjuncts(null).rootURL+'/lib/controls/browse/browse.css'}";
+      link.href = "${request.contextPath+'/'+app.getAdjuncts(null).rootURL+'/lib/controls/path_browser/browse.css'}";
       link.media = 'all';
       document.getElementsByTagName('head')[0].appendChild(link);
       var script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = "${request.contextPath+'/'+app.getAdjuncts(null).rootURL+'/lib/controls/browse/browse.js'}";
+      script.src = "${request.contextPath+'/'+app.getAdjuncts(null).rootURL+'/lib/controls/path_browser/browse.js'}";
       document.getElementsByTagName('body')[0].appendChild(script);
     }
   </script>

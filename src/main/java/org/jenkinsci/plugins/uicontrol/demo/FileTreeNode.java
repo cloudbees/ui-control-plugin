@@ -1,6 +1,6 @@
 package org.jenkinsci.plugins.uicontrol.demo;
 
-import org.jenkinsci.plugins.uicontrol.TreeNode;
+import org.jenkinsci.plugins.uicontrol.path_browser.TreeNode;
 
 import java.io.File;
 import java.util.ArrayList;
